@@ -1,0 +1,17 @@
+SET SERVEROUTPUT ON 
+DECLARE
+    V_INICIO NUMBER(10) := &VALOR_INICIO;
+    V_FIM V_INICIO%TYPE := &VALOR_FIM;
+    V_IMPAR V_INICIO%TYPE := 0;
+    V_PAR V_INICIO%TYPE := 0;
+BEGIN
+    FOR V_CONTADOR IN V_INICIO .. V_FIM LOOP
+        IF MOD (V_CONTADOR, 2) = 0 THEN
+            V_PAR := V_PAR + 1;
+        ELSE
+            V_IMPAR := V_IMPAR + 1;
+        END IF;
+    END LOOP;
+    DBMS_OUTPUT.PUT_LINE('Pares = ' || V_PAR);
+    DBMS_OUTPUT.PUT_LINE('Ímpares = ' || V_IMPAR);
+END;
