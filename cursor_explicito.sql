@@ -6,8 +6,8 @@ CREATE TABLE FUNCIONARIO(
     nm_departamento varchar2(50)
 )
 
-INSERT INTO FUNCIONARIO(cd_fun, nm_fun, salario, nm_departamento) VALUES (1, 'Jo„o', 10000, 'RH');
-INSERT INTO FUNCIONARIO(cd_fun, nm_fun, salario, nm_departamento) VALUES (2, 'Claudia', 16000, 'AdministraÁ„o');
+INSERT INTO FUNCIONARIO(cd_fun, nm_fun, salario, nm_departamento) VALUES (1, 'Jo√£o', 10000, 'RH');
+INSERT INTO FUNCIONARIO(cd_fun, nm_fun, salario, nm_departamento) VALUES (2, 'Claudia', 16000, 'Administra√ß√£o');
 INSERT INTO FUNCIONARIO(cd_fun, nm_fun, salario, nm_departamento) VALUES (3, 'Joaquim', 5500, 'Agente de Campo');
 INSERT INTO FUNCIONARIO(cd_fun, nm_fun, salario, nm_departamento) VALUES (4, 'Gustavo', 2000, 'RH');
 */
@@ -22,16 +22,16 @@ BEGIN
     OPEN C_FUNCIONARIO;
     LOOP
         FETCH C_FUNCIONARIO INTO V_FUNCIONARIO;
+        EXIT WHEN C_FUNCIONARIO %NOTFOUND;
         IF V_FUNCIONARIO.NM_DEPARTAMENTO = 'RH' THEN
             V_MEDIA := V_MEDIA + V_FUNCIONARIO.SALARIO;
         END IF;
         V_CONTADOR := V_CONTADOR + 1;
-        EXIT WHEN C_FUNCIONARIO %NOTFOUND;
     END LOOP;
     CLOSE C_FUNCIONARIO;
     IF V_MEDIA = 0 THEN
-        DBMS_OUTPUT.PUT_LINE('Nenhum funcion·rio encontrado para o departamento RH');
+        DBMS_OUTPUT.PUT_LINE('Nenhum funcion√°rio encontrado para o departamento RH');
     END IF;
     V_MEDIA := V_MEDIA / V_CONTADOR;
-    DBMS_OUTPUT.PUT_LINE('MÈdia dos sal·rios de RH : ' || V_MEDIA);
+    DBMS_OUTPUT.PUT_LINE('M√©dia dos sal√°rios de RH : ' || V_MEDIA);
 END;
